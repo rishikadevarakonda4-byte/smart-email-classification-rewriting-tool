@@ -1,0 +1,14 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.swp
+*.DS_Store
+.git
+.gitignore
+Dockerfile
+README.md
+SETUP_GUIDE.md
