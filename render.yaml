@@ -2,7 +2,7 @@ services:
   - type: web
     name: smart-email-api
     env: python
-    pythonVersion: 3.9.18
+    pythonVersion: 3.13.9
     plan: free
     branch: main
     rootDir: smart-email-apifinal
