@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: smart-email-api
+    env: python
+    plan: free
+    branch: main
+    rootDir: smart-email-api 6
+    buildCommand: python3 -m pip install --upgrade pip setuptools wheel && python3 -m pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
