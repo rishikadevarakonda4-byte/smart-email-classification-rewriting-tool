@@ -5,7 +5,7 @@ services:
     pythonVersion: 3.9.18
     plan: free
     branch: main
-    rootDir: smart-email-api 6
+    rootDir: smart-email-apifinal
     buildCommand: python3 -m pip install --upgrade pip setuptools wheel && python3 -m pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
     healthCheckPath: /health
