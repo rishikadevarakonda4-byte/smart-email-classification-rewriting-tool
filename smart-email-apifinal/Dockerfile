@@ -1,25 +1,19 @@
-# ── Build stage ───────────────────────────────────────────────────────────────
-FROM python:3.11-slim AS builder
-
-WORKDIR /app
-COPY requirements.txt ./
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
-
-# ── Runtime stage ─────────────────────────────────────────────────────────────
-FROM python:3.11-slim
+FROM python:3.9.18-slim
 
 WORKDIR /app
 
-# Copy installed packages and runtime dependencies from builder
-COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
-COPY --from=builder /usr/local/bin /usr/local/bin
+# Copy repo
+COPY . /app
 
-# Copy only source files
-COPY . .
+# Set working directory to smart-email-apifinal
+WORKDIR /app/smart-email-apifinal
 
-# Expose the FastAPI port
+# Install dependencies
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Expose port
 EXPOSE 8000
 
-# Default command
+# Start command
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
